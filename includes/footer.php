@@ -17,7 +17,7 @@
               <?php if($categories) :
                   while($row = $categories->fetch_array()):
               ?>
-              <li><a href="#"><?php echo $row['title'] ?></a></li>
+              <li><a href="category.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></li>
               <?php endwhile; endif;  ?>
             </ol>
           </div>
