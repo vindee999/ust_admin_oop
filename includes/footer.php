@@ -1,10 +1,8 @@
+<?php 
 
-          <nav>
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </nav>
+  $cat_query = "select * from categories";
+  $categories = $db->select($cat_query);
+?>
 
         </div><!-- /.blog-main -->
 
@@ -16,11 +14,11 @@
           <div class="sidebar-module">
             <h4>Categories</h4>
             <ol class="list-unstyled">
-              <li><a href="#">PHP & Mysql</a></li>
-              <li><a href="#">Javascript</a></li>
-              <li><a href="#">HTML & CSS</a></li>
-              <li><a href="#">Wordpress</a></li>
-              <li><a href="#">Web Development</a></li>
+              <?php if($categories) :
+                  while($row = $categories->fetch_array()):
+              ?>
+              <li><a href="#"><?php echo $row['title'] ?></a></li>
+              <?php endwhile; endif;  ?>
             </ol>
           </div>
           <div class="sidebar-module">
