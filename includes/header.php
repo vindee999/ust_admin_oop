@@ -3,6 +3,10 @@
   include 'libs/config.php';
 
   $db = new Database;
+
+  $query = "Select * from posts order by id desc";
+  $posts = $db->select($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -53,9 +57,12 @@
 
         <div class="col-sm-8 blog-main">
 
+          <?php while($row = $posts->fetch_array()): ?>
           <div class="blog-post">
-            <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+            <h2 class="blog-post-title"><?php echo $row['title']  ?></h2>
+            <p class="blog-post-meta"><?php echo date('F d, Y',strtotime($row['date']))  ?> by <a href="#"><?php echo $row['author']  ?></a></p>
 
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+            <p><?php echo substr($row['content'],0,200)  ?></p>
+            <a href="single.php?id=<?php echo $row['id'] ?>">Read more</a>
           </div><!-- /.blog-post -->
+        <?php endwhile; ?>
