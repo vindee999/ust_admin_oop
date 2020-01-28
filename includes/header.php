@@ -1,3 +1,10 @@
+<?php 
+  include 'libs/database.php';
+  include 'libs/config.php';
+
+  $db = new Database;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
