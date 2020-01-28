@@ -58,7 +58,7 @@
         <br>
         <h2>Add New Post</h2><hr>
 
-        <form action="add_post" method="post">
+        <form action="add_post.php" method="post">
           <div class="form-group">
             <label>Title</label>
             <input type="text" name="title" class="form-control" placeholder="Enter Title">
@@ -77,4 +77,5 @@
           </div>
           
           <button type="submit" class="btn btn-success">Submit</button>
+          <a href="index.php" class="btn btn-danger">Cancel</a>
         </form>
