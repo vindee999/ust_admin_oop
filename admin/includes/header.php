@@ -8,6 +8,9 @@
   $query = "Select * from posts order by id desc";
   $posts = $db->select($query);
 
+  $cat_query = "Select * from categories";
+  $categories = $db->select($cat_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +57,38 @@
         <div class="col-sm-12 blog-main">
 
           <table class="table table-striped">
-            
+              <tr align="center">
+                <td colspan="4"><h1>Manage Posts</h1></td>
+              </tr>
+              <tr>
+                <th>Post ID</th>
+                <th>Post Title</th>
+                <th>Post Author</th>
+                <th>Post Date</th>
+              </tr>
+              <?php while($row = $posts->fetch_array()): ?>
+              <tr>
+                <td><?php echo $row['id'] ?></td>
+                <td><a href="edit.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></td>
+                <td><?php echo $row['author'] ?></td>
+                <td><?php echo formate_date($row['date']) ?></td>
+              </tr>
+              <?php endwhile; ?>
+          </table>
+
+          <table class="table table-striped">
+              <tr align="center">
+                <td colspan="4"><h1>Manage Categories</h1></td>
+              </tr>
+              <tr>
+                <th>Category ID</th>
+                <th>Category Title</th>
+              </tr>
+              <?php while($row1 = $categories->fetch_array()): ?>
+              <tr>
+                <td><?php echo $row1['id'] ?></td>
+                <td><a href="edit_cat.php?id=<?php echo $row1['id'] ?>"><?php echo $row1['title'] ?></a></td>
+              </tr>
+              <?php endwhile; ?>
           </table>
 
