@@ -4,7 +4,7 @@
 
   $db = new Database;
 
-  $query = "Select * from posts order by id desc";
+  $query = "Select * from posts where id = 5 order by id desc";
   $posts = $db->select($query);
 
 ?>
@@ -57,12 +57,14 @@
 
         <div class="col-sm-8 blog-main">
 
-          <?php while($row = $posts->fetch_array()): ?>
-          <div class="blog-post">
-            <h2 class="blog-post-title"><?php echo $row['title']  ?></h2>
-            <p class="blog-post-meta"><?php echo date('F d, Y',strtotime($row['date']))  ?> by <a href="#"><?php echo $row['author']  ?></a></p>
+          <?php if($posts): ?>
+            <?php while($row = $posts->fetch_array()): ?>
+            <div class="blog-post">
+              <h2 class="blog-post-title"><?php echo $row['title']  ?></h2>
+              <p class="blog-post-meta"><?php echo date('F d, Y',strtotime($row['date']))  ?> by <a href="#"><?php echo $row['author']  ?></a></p>
 
-            <p><?php echo substr($row['content'],0,200)  ?></p>
-            <a href="single.php?id=<?php echo $row['id'] ?>">Read more</a>
-          </div><!-- /.blog-post -->
-        <?php endwhile; ?>
+              <p><?php echo substr($row['content'],0,200)  ?></p>
+              <a href="single.php?id=<?php echo $row['id'] ?>">Read more</a>
+            </div><!-- /.blog-post -->
+            <?php endwhile; ?>
+          <?php else: echo "No POsts"; endif; ?>
