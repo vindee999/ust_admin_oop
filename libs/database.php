@@ -36,7 +36,7 @@
 			$insert = $this->link->query($query);
 
 			if($insert){
-				header('Location: index.php?insert=Post Inserted');
+				header('Location: index.php?msg=Post Inserted');
 			}else{
 				echo "Did not insert";
 			}
@@ -47,7 +47,7 @@
 			$update = $this->link->query($query);
 
 			if($update){
-				header('Location: index.php?insert=Post Updated');
+				header('Location: index.php?msg=Post Updated');
 			}else{
 				echo "Did not update";
 			}
@@ -58,7 +58,7 @@
 			$delete = $this->link->query($query);
 
 			if($delete){
-				header('Location: index.php?insert=Post Deleted');
+				header('Location: index.php?msg=Post Deleted');
 			}else{
 				echo "Did not update";
 			}

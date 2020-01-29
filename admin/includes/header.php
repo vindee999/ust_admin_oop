@@ -43,7 +43,7 @@
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="index.php">Admin Panel</a>
           <a class="blog-nav-item" href="add_post.php">Add Post</a>
-          <a class="blog-nav-item" href="">Add Category</a>
+          <a class="blog-nav-item" href="add_cat.php">Add Category</a>
           <a class="blog-nav-item pull-right" href="localhost/ustad_admin_oop">View Log</a>
           <a class="blog-nav-item pull-right" href="logout.php">Logout</a>
         </nav>
@@ -56,6 +56,9 @@
 
         <div class="col-sm-12 blog-main">
 
+          <?php if(isset($_GET['msg'])): ?>
+            <div class="alert alert-success"><?php echo $_GET['msg'] ?></div>
+          <?php endif; ?>
           <table class="table table-striped">
               <tr align="center">
                 <td colspan="4"><h1>Manage Posts</h1></td>
