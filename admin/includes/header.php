@@ -72,7 +72,7 @@
               <?php while($row = $posts->fetch_array()): ?>
               <tr>
                 <td><?php echo $row['id'] ?></td>
-                <td><a href="edit.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></td>
+                <td><a href="edit_post.php?id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a></td>
                 <td><?php echo $row['author'] ?></td>
                 <td><?php echo formate_date($row['date']) ?></td>
               </tr>
