@@ -28,6 +28,12 @@
       }
   }
 
+  if(isset($_GET['delete_id'])){
+      $del_id = $_GET['delete_id'];
+      $del_query = "delete from posts where id = $del_id";
+      $db->delete($del_query);
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -104,4 +110,5 @@
           
           <button type="submit" name="update" class="btn btn-success">Update</button>
           <a href="index.php" class="btn btn-danger">Cancel</a>
+          <a href="edit_post.php?id=<?php echo $eid ?>&delete_id=<?php echo $eid ?>" class="btn btn-warning">Delete</a>
         </form>
