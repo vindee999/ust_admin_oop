@@ -5,11 +5,23 @@
 
   $db = new Database;
 
-  $query = "Select * from posts order by id desc";
-  $posts = $db->select($query);
-
   $cat_query = "Select * from categories";
   $categories = $db->select($cat_query);
+
+  if(isset($_POST['submit'])){
+      $title = mysqli_real_escape_string($db->link,$_POST['title']);
+      $cat = mysqli_real_escape_string($db->link,$_POST['cat']);
+      $content = mysqli_real_escape_string($db->link,$_POST['content']);
+      $author = mysqli_real_escape_string($db->link,$_POST['author']);
+      $tags = mysqli_real_escape_string($db->link,$_POST['tags']);
+
+      if($title == '' || $cat == '' || $content == '' || $author == '' || $tags == ''){
+        echo "Fill all the fields";
+      }else{
+        $ins_query = "insert into posts (category,title,content,author,tags) values ($cat,'$title','$content','$author','$tags')";
+        $db->insert($ins_query);
+      }
+  }
 
 ?>
 
@@ -64,8 +76,17 @@
             <input type="text" name="title" class="form-control" placeholder="Enter Title">
           </div>
           <div class="form-group">
+            <label>Category</label>
+            <select class="form-control" name="cat">
+              <option>Select Category</option>
+              <?php while($row = $categories->fetch_array()): ?>
+              <option value="<?php echo $row['id'] ?>"><?php echo $row['title'] ?></option>
+              <?php endwhile; ?>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Content</label>
-            <input type="text" name="content" class="form-control" placeholder="Enter Content">
+            <textarea name="content" class="form-control" rows="3" placeholder="Enter Content"></textarea>
           </div>
           <div class="form-group">
             <label >Author</label>
@@ -76,6 +97,6 @@
             <input type="text" name="tags" class="form-control" placeholder="Enter Tags">
           </div>
           
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" name="submit" class="btn btn-success">Submit</button>
           <a href="index.php" class="btn btn-danger">Cancel</a>
         </form>
